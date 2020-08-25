@@ -2,18 +2,18 @@ services :
   - docker
 
 before_install :
-  - docker build -t vishal/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vishalgwalani/react-test -f ./client/Dockerfile.dev ./client
 
 script : 
-    - docker run -e CI=true vishal/react-test npm test
+    - docker run -e CI=true vishalgwalani/react-test npm test
 
 after_success : 
-  - docker build -t vishal/multi-client ./client
-  - docker build -t vishal/multi-nginx ./nginx
-  - docker build -t vishal/multi-server ./server
-  - docker build -t vishal/multi-worker ./worker  
+  - docker build -t vishalgwalani/multi-client ./client
+  - docker build -t vishalgwalani/multi-nginx ./nginx
+  - docker build -t vishalgwalani/multi-server ./server
+  - docker build -t vishalgwalani/multi-worker ./worker  
   - echo "$DOCKER_PASSWORD"  | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push vishal/multi-client
-  - docker push vishal/multi-nginx
-  - docker push vishal/multi-server
-  - docker push vishal/multi-worker
+  - docker push vishalgwalani/multi-client
+  - docker push vishalgwalani/multi-nginx
+  - docker push vishalgwalani/multi-server
+  - docker push vishalgwalani/multi-worker
