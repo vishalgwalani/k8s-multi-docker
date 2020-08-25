@@ -1,0 +1,19 @@
+services : 
+  - docker
+
+before_install :
+  - docker build -t vishal/react-test -f ./client/Dockerfile.dev ./client
+
+script : 
+    - docker run -e CI=true vishal/react-test npm test
+
+after_install : 
+  - docker build -t vishal/multi-client ./client
+  - docker build -t vishal/multi-nginx ./nginx
+  - docker build -t vishal/multi-server ./server
+  - docker build -t vishal/multi-worker ./worker  
+  - echo "$DOCKER_PASSWORD"  | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push vishal/multi-client
+  - docker push vishal/multi-nginx
+  - docker push vishal/multi-server
+  - docker push vishal/multi-worker
