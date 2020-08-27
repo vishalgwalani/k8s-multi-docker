@@ -17,3 +17,4 @@ after_success :
   - docker push vishalgwalani/multi-nginx
   - docker push vishalgwalani/multi-server
   - docker push vishalgwalani/multi-worker
+  
