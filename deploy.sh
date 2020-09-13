@@ -7,7 +7,7 @@ docker push vishalgwalani/multi-worker:latest
 docker push vishalgwalani/multi-client:$SHA
 docker push vishalgwalani/multi-server:$SHA
 docker push vishalgwalani/multi-worker:$SHA
-kuberctl apply -f k8s
-kuberctl set image deployments/server-deployment server=vishalgwalani/multi-server:$SHA
-kuberctl set image deployments/client-deployment client=vishalgwalani/multi-client:$SHA
-kuberctl set image deployments/worker-deployment worker=vishalgwalani/multi-worker:$SHA
+kubectl apply -f k8s
+kubectl set image deployments/server-deployment server=vishalgwalani/multi-server:$SHA
+kubectl set image deployments/client-deployment client=vishalgwalani/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=vishalgwalani/multi-worker:$SHA
